@@ -1,5 +1,5 @@
 {% set name = "pytorch-pretrained-bert" %}
-{% set version = "0.5.1" %}
+{% set version = "0.6.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
-  sha256: 202b0acfe985a6df477fc6b9e321b96c90732a5b941791a39541ea653e295052
+  sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
 
 build:
   skip: True  # [not linux or py<35]
