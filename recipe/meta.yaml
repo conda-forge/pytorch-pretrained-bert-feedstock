@@ -6,17 +6,14 @@ package:
   version: {{ version }}
 
 source:
-  - folder: dist
-    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
-    sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
-  - folder: src
-    url: https://github.com/huggingface/pytorch-pretrained-BERT/archive/v{{ version }}.tar.gz
-    sha256: 9c720b62b57310d41399948f5b3131e824160fa7744a7591e9651281c08ce1bd
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
+  sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
 
 build:
   skip: True  # [not linux or py<35]
+  noarch: python
   number: 0
-  script: "cd dist && {{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - pytorch-pretrained-bert = pytorch_pretrained_bert.__main__:main
     - pytorch_pretrained_bert = pytorch_pretrained_bert.__main__:main
@@ -35,16 +32,8 @@ requirements:
     - tqdm
 
 test:
-  requires:
-    - ftfy
-    - pytest
-    - spacy
-  source_files:
-    - src/tests
   imports:
     - pytorch_pretrained_bert
-  commands:
-    - cd src && pytest -sv --runslow
 
 about:
   home: https://github.com/huggingface/pytorch-pretrained-BERT
