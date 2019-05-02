@@ -25,12 +25,13 @@ requirements:
     - boto3
     - numpy
     - python
-    - pytorch >=0.4.1
     - regex
     - requests
     - tqdm
 
 test:
+  requires:
+    - pytorch-cpu
   imports:
     - pytorch_pretrained_bert
 
