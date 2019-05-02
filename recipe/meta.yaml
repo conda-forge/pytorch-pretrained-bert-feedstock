@@ -38,7 +38,7 @@ about:
   home: https://github.com/huggingface/pytorch-pretrained-BERT
   license: Apache-2.0
   license_family: Apache
-  license_file: dist/LICENSE
+  license_file: LICENSE
   summary: 'PyTorch version of Google AI BERT model with script to load Google pre-trained models'
   description: |
     This repository contains op-for-op PyTorch reimplementations, pre-trained
