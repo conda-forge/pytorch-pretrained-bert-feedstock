@@ -10,7 +10,7 @@ source:
     url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
     sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
   - folder: src
-    url: https://github.com/huggingface/pytorch-pretrained-BERT/archive/v{{ lower }}.tar.gz
+    url: https://github.com/huggingface/pytorch-pretrained-BERT/archive/v{{ version }}.tar.gz
     sha256: badbeef
 
 build:
