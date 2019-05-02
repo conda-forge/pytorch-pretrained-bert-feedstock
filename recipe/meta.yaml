@@ -11,7 +11,7 @@ source:
     sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
   - folder: src
     url: https://github.com/huggingface/pytorch-pretrained-BERT/archive/v{{ version }}.tar.gz
-    sha256: badbeef
+    sha256: 9c720b62b57310d41399948f5b3131e824160fa7744a7591e9651281c08ce1bd
 
 build:
   skip: True  # [not linux or py<35]
