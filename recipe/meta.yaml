@@ -19,6 +19,7 @@ build:
   script: "cd dist && {{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - pytorch-pretrained-bert = pytorch_pretrained_bert.__main__:main
+    - pytorch_pretrained_bert = pytorch_pretrained_bert.__main__:main
 
 requirements:
   host:
