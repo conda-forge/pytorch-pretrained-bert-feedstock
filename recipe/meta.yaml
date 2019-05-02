@@ -1,47 +1,67 @@
 {% set name = "pytorch-pretrained-bert" %}
-{% set version = "0.5.1" %}
+{% set version = "0.6.2" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
-  sha256: 202b0acfe985a6df477fc6b9e321b96c90732a5b941791a39541ea653e295052
+  - folder: dist
+    url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
+    sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
+  - folder: src
+    url: https://github.com/huggingface/pytorch-pretrained-BERT/archive/v{{ lower }}.tar.gz
+    sha256: badbeef
 
 build:
   skip: True  # [not linux or py<35]
   number: 0
-  script: "{{ PYTHON }} -m pip install . --no-deps -vv"
+  script: "{{ PYTHON }} -m pip install dist --no-deps -vv"
   entry_points:
-    - pytorch-pretrained-bert=pytorch_pretrained_bert.__main__:main
+    - pytorch-pretrained-bert = pytorch_pretrained_bert.__main__:main
 
 requirements:
   host:
     - python
     - pip
   run:
+    - boto3
+    - numpy
     - python
     - pytorch >=0.4.1
-    - numpy
-    - boto3
+    - regex
     - requests
     - tqdm
 
 test:
+  requires:
+    - ftfy
+    - pytest
+    - spacy
+  source_files:
+    - src/tests
   imports:
     - pytorch_pretrained_bert
+  commands:
+    - cd src && pytest -sv --runslow
 
 about:
-  home: https://pypi.org/project/pytorch-pretrained-bert/
-  license: Apache 2.0
+  home: https://github.com/huggingface/pytorch-pretrained-BERT
+  license: Apache-2.0
   license_family: Apache
-  license_file: '{{ environ["RECIPE_DIR"] }}/LICENSE'
-  summary: "A PyTorch implementation of Google AI's BERT model provided with Google's pre-trained models, examples and utilities."
+  license_file: LICENSE
+  summary: 'PyTorch version of Google AI BERT model with script to load Google pre-trained models'
   description: |
-    This repository contains an op-for-op PyTorch reimplementation of Google's TensorFlow repository for the BERT model that was released together with the paper BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding by Jacob Devlin, Ming-Wei Chang, Kenton Lee and Kristina Toutanova. This implementation is provided with Google's pre-trained models, examples, notebooks and a command-line interface to load any pre-trained TensorFlow checkpoint for BERT is also provided.
-  doc_url: https://github.com/huggingface/pytorch-pretrained-BERT
-  dev_url: https://github.com/huggingface/pytorch-pretrained-BERT
+    This repository contains op-for-op PyTorch reimplementations, pre-trained
+    models and fine-tuning examples for:
+      - Google's BERT model,
+      - OpenAI's GPT model,
+      - Google/CMU's Transformer-XL model, and
+      - OpenAI's GPT-2 model.
+    These implementations have been tested on several datasets (see the
+    examples) and should match the performances of the associated TensorFlow
+    implementations (e.g. ~91 F1 on SQuAD for BERT, ~88 F1 on RocStories for
+    OpenAI GPT and ~18.3 perplexity on WikiText 103 for the Transformer-XL).
 
 extra:
   recipe-maintainers:
