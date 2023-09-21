@@ -1,11 +1,11 @@
-About pytorch-pretrained-bert
-=============================
+About pytorch-pretrained-bert-feedstock
+=======================================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pytorch-pretrained-bert-feedstock/blob/main/LICENSE.txt)
 
 Home: https://github.com/huggingface/pytorch-pretrained-BERT
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/pytorch-pretrained-bert-feedstock/blob/main/LICENSE.txt)
 
 Summary: PyTorch version of Google AI BERT model with script to load Google pre-trained models
 
