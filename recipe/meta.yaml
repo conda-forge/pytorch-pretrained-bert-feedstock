@@ -6,12 +6,12 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-','_') }}-{{ version }}.tar.gz
   sha256: 9cf7c6221e854071b9844f2a9a581e05a24777351618c010493d9c76601c6747
 
 build:
   skip: True  # [not linux or py<35]
-  number: 1
+  number: 2
   script: "{{ PYTHON }} -m pip install . --no-deps -vv"
   entry_points:
     - pytorch-pretrained-bert = pytorch_pretrained_bert.__main__:main
@@ -21,6 +21,7 @@ requirements:
   host:
     - python
     - pip
+    - setuptools
   run:
     - boto3
     - numpy
@@ -31,7 +32,7 @@ requirements:
 
 test:
   requires:
-    - pytorch-cpu
+    - pytorch
   imports:
     - pytorch_pretrained_bert
 
